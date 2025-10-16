@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Commerce Store | Milk, Sweets, Vegetables & Pooja Items</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .hero-section {
+      background: linear-gradient(to right, #007bff, #00c6ff);
+      color: white;
+      padding: 5rem 0;
+    }
+    .category-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    .product-card {
+      transition: transform 0.3s ease;
+      border: none;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+    .discount-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: red;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+    }
+    .footer {
+      background: #0d6efd;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">🛍️ E-Commerce Store</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link fw-semibold" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">🛒 Cart (<span id="cart-count">0</span>)</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-section text-center">
+    <div class="container">
+      <h1 class="display-4 fw-bold">Welcome to Our Online Store</h1>
+      <p class="lead">Fresh Milk, Delicious Sweets, Organic Vegetables & Pooja Essentials — all in one place!</p>
+      <a href="#categories" class="btn btn-light btn-lg mt-3">Explore Now</a>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section id="categories" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold">Shop by Category</h2>
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="card category-card text-center p-3">
+            <img src="images/milk.jpg" class="card-img-top rounded" alt="Milk Products">
+            <div class="card-body">
+              <h5 class="card-title">Milk Products</h5>
+              <button class="btn btn-outline-primary btn-sm" onclick="showCategory('milk')">View</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card category-card text-center p-3">
+            <img src="images/sweets.jpg" class="card-img-top rounded" alt="Sweets">
+            <div class="card-body">
+              <h5 class="card-title">Sweets</h5>
+              <button class="btn btn-outline-primary btn-sm" onclick="showCategory('sweets')">View</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card category-card text-center p-3">
+            <img src="images/vegetables.jpg" class="card-img-top rounded" alt="Vegetables">
+            <div class="card-body">
+              <h5 class="card-title">Vegetables</h5>
+              <button class="btn btn-outline-primary btn-sm" onclick="showCategory('vegetables')">View</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card category-card text-center p-3">
+            <img src="images/pooja.jpg" class="card-img-top rounded" alt="Pooja Items">
+            <div class="card-body">
+              <h5 class="card-title">Pooja Items</h5>
+              <button class="btn btn-outline-primary btn-sm" onclick="showCategory('pooja')">View</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">Featured Products</h2>
+      <div class="row g-4" id="products-container">
+        <!-- Products will be dynamically loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Your Shopping Cart</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="cart-items"></div>
+          <div class="text-end mt-3">
+            <h5>Total: ₹<span id="cart-total">0</span></h5>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-success" onclick="checkout()">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="mb-0">&copy; 2025 E-Commerce Store | Designed by Gopi Brahmaiah</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const products = [
+      { id: 1, category: "milk", name: "Full Cream Milk", price: 60, discount: 5, image: "images/fullcream.jpg" },
+      { id: 2, category: "sweets", name: "Kaju Katli", price: 250, discount: 10, image: "images/kajukatli.jpg" },
+      { id: 3, category: "vegetables", name: "Tomatoes (1kg)", price: 40, discount: 5, image: "images/tomato.jpg" },
+      { id: 4, category: "pooja", name: "Incense Sticks", price: 50, discount: 8, image: "images/incense.jpg" },
+    ];
+
+    let cart = [];
+
+    function showCategory(category) {
+      const filtered = products.filter(p => p.category === category);
+      displayProducts(filtered);
+    }
+
+    function displayProducts(productList) {
+      const container = document.getElementById('products-container');
+      container.innerHTML = '';
+      productList.forEach(p => {
+        container.innerHTML += `
+          <div class="col-md-3">
+            <div class="card product-card position-relative">
+              <div class="discount-badge">-${p.discount}%</div>
+              <img src="${p.image}" class="card-img-top" alt="${p.name}">
+              <div class="card-body text-center">
+                <h6 class="card-title">${p.name}</h6>
+                <p class="text-muted mb-1"><s>₹${p.price}</s> <span class="fw-bold text-success">₹${p.price - (p.price * p.discount / 100)}</span></p>
+                <button class="btn btn-primary btn-sm" onclick="addToCart(${p.id})">Add to Cart</button>
+              </div>
+            </div>
+          </div>`;
+      });
+    }
+
+    function addToCart(id) {
+      const item = products.find(p => p.id === id);
+      cart.push(item);
+      document.getElementById('cart-count').innerText = cart.length;
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartContainer = document.getElementById('cart-items');
+      cartContainer.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, i) => {
+        const price = item.price - (item.price * item.discount / 100);
+        total += price;
+        cartContainer.innerHTML += `
+          <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+            <div>
+              <h6>${item.name}</h6>
+              <small>₹${price}</small>
+            </div>
+            <button class="btn btn-sm btn-danger" onclick="removeItem(${i})">Remove</button>
+          </div>`;
+      });
+      document.getElementById('cart-total').innerText = total.toFixed(2);
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      document.getElementById('cart-count').innerText = cart.length;
+      renderCart();
+    }
+
+    function checkout() {
+      alert("Thank you for your purchase!");
+      cart = [];
+      document.getElementById('cart-count').innerText = 0;
+      renderCart();
+    }
+
+    // Load all products on startup
+    displayProducts(products);
+  </script>
+</body>
+</html>
