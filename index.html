@@ -5,62 +5,251 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>E-Commerce Store | Milk, Sweets, Vegetables & Pooja Items</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --primary: #007bff;
+      --secondary: #00c6ff;
+      --success: #28a745;
+      --light: #f8f9fa;
+      --dark: #343a40;
+    }
+    
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #f8f9fa;
+      color: #333;
     }
+    
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
     .hero-section {
-      background: linear-gradient(to right, #007bff, #00c6ff);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
       padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
     }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+    }
+    
     .category-card {
       transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
-    }
-    .category-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    }
-    .product-card {
-      transition: transform 0.3s ease;
       border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+    
+    .category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .product-card {
+      transition: transform 0.3s ease, box-shadow 0.3s;
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      height: 100%;
+    }
+    
     .product-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
+    
     .discount-badge {
       position: absolute;
       top: 10px;
       right: 10px;
-      background: red;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
       color: white;
       padding: 5px 10px;
-      border-radius: 10px;
+      border-radius: 20px;
       font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 1;
     }
+    
     .footer {
-      background: #0d6efd;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
       text-align: center;
-      padding: 1rem;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+    
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .category-img {
+      height: 150px;
+      object-fit: cover;
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 500;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    }
+    
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: #ff4b2b;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .cart-item {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+    
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 2rem;
+      color: #6c757d;
+    }
+    
+    .empty-cart i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #dee2e6;
+    }
+    
+    .price {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .original-price {
+      text-decoration: line-through;
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+    
+    .discount-price {
+      color: var(--success);
+      font-weight: 600;
+    }
+    
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--success);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1050;
+      display: none;
+      animation: slideIn 0.5s ease;
+    }
+    
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    .category-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+    
+    .category-btn {
+      background: white;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    
+    .category-btn:hover, .category-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .search-container {
+      max-width: 500px;
+      margin: 0 auto 2rem;
     }
   </style>
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#">🛍️ E-Commerce Store</a>
+      <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+        <i class="fas fa-store me-2"></i> E-Commerce Store
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link fw-semibold" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">🛒 Cart (<span id="cart-count">0</span>)</a>
+          <li class="nav-item position-relative">
+            <a class="nav-link fw-semibold d-flex align-items-center" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">
+              <i class="fas fa-shopping-cart me-1"></i> Cart 
+              <span class="cart-badge" id="cart-count">0</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -69,51 +258,55 @@
 
   <!-- Hero -->
   <section class="hero-section text-center">
-    <div class="container">
-      <h1 class="display-4 fw-bold">Welcome to Our Online Store</h1>
-      <p class="lead">Fresh Milk, Delicious Sweets, Organic Vegetables & Pooja Essentials — all in one place!</p>
-      <a href="#categories" class="btn btn-light btn-lg mt-3">Explore Now</a>
+    <div class="container position-relative">
+      <h1 class="display-4 fw-bold mb-3">Welcome to Our Online Store</h1>
+      <p class="lead mb-4">Fresh Milk, Delicious Sweets, Organic Vegetables & Pooja Essentials — all in one place!</p>
+      <a href="#categories" class="btn btn-light btn-lg mt-3 px-4 py-2 fw-semibold">Explore Now <i class="fas fa-arrow-right ms-2"></i></a>
     </div>
   </section>
 
   <!-- Categories -->
   <section id="categories" class="py-5">
     <div class="container">
-      <h2 class="text-center mb-5 fw-bold">Shop by Category</h2>
+      <h2 class="text-center mb-5 fw-bold section-title">Shop by Category</h2>
       <div class="row g-4">
-        <div class="col-md-3">
-          <div class="card category-card text-center p-3">
-            <img src="images/milk.jpg" class="card-img-top rounded" alt="Milk Products">
-            <div class="card-body">
+        <div class="col-md-3 col-sm-6">
+          <div class="card category-card text-center p-3 h-100">
+            <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top category-img rounded" alt="Milk Products">
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title">Milk Products</h5>
-              <button class="btn btn-outline-primary btn-sm" onclick="showCategory('milk')">View</button>
+              <p class="card-text text-muted">Fresh dairy products delivered daily</p>
+              <button class="btn btn-primary btn-sm mt-auto" onclick="showCategory('milk')">View Products</button>
             </div>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="card category-card text-center p-3">
-            <img src="images/sweets.jpg" class="card-img-top rounded" alt="Sweets">
-            <div class="card-body">
+        <div class="col-md-3 col-sm-6">
+          <div class="card category-card text-center p-3 h-100">
+            <img src="https://images.unsplash.com/photo-1586985288625-7c6c12f3b8e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top category-img rounded" alt="Sweets">
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title">Sweets</h5>
-              <button class="btn btn-outline-primary btn-sm" onclick="showCategory('sweets')">View</button>
+              <p class="card-text text-muted">Traditional and modern sweets</p>
+              <button class="btn btn-primary btn-sm mt-auto" onclick="showCategory('sweets')">View Products</button>
             </div>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="card category-card text-center p-3">
-            <img src="images/vegetables.jpg" class="card-img-top rounded" alt="Vegetables">
-            <div class="card-body">
+        <div class="col-md-3 col-sm-6">
+          <div class="card category-card text-center p-3 h-100">
+            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top category-img rounded" alt="Vegetables">
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title">Vegetables</h5>
-              <button class="btn btn-outline-primary btn-sm" onclick="showCategory('vegetables')">View</button>
+              <p class="card-text text-muted">Fresh organic vegetables</p>
+              <button class="btn btn-primary btn-sm mt-auto" onclick="showCategory('vegetables')">View Products</button>
             </div>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="card category-card text-center p-3">
-            <img src="images/pooja.jpg" class="card-img-top rounded" alt="Pooja Items">
-            <div class="card-body">
+        <div class="col-md-3 col-sm-6">
+          <div class="card category-card text-center p-3 h-100">
+            <img src="https://images.unsplash.com/photo-1601905809340-8756890be33c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top category-img rounded" alt="Pooja Items">
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title">Pooja Items</h5>
-              <button class="btn btn-outline-primary btn-sm" onclick="showCategory('pooja')">View</button>
+              <p class="card-text text-muted">All your spiritual needs</p>
+              <button class="btn btn-primary btn-sm mt-auto" onclick="showCategory('pooja')">View Products</button>
             </div>
           </div>
         </div>
@@ -124,7 +317,24 @@
   <!-- Products Section -->
   <section id="products" class="py-5 bg-light">
     <div class="container">
-      <h2 class="text-center fw-bold mb-5">Featured Products</h2>
+      <h2 class="text-center fw-bold mb-5 section-title">Featured Products</h2>
+      
+      <!-- Search and Category Filter -->
+      <div class="search-container">
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+          <input type="text" id="search-input" class="form-control" placeholder="Search products..." onkeyup="filterProducts()">
+        </div>
+      </div>
+      
+      <div class="category-buttons">
+        <button class="category-btn active" onclick="showCategory('all')">All Products</button>
+        <button class="category-btn" onclick="showCategory('milk')">Milk Products</button>
+        <button class="category-btn" onclick="showCategory('sweets')">Sweets</button>
+        <button class="category-btn" onclick="showCategory('vegetables')">Vegetables</button>
+        <button class="category-btn" onclick="showCategory('pooja')">Pooja Items</button>
+      </div>
+      
       <div class="row g-4" id="products-container">
         <!-- Products will be dynamically loaded here -->
       </div>
@@ -136,21 +346,28 @@
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title">Your Shopping Cart</h5>
-          <button class="btn-close" data-bs-dismiss="modal"></button>
+          <h5 class="modal-title"><i class="fas fa-shopping-cart me-2"></i> Your Shopping Cart</h5>
+          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <div id="cart-items"></div>
-          <div class="text-end mt-3">
+          <div id="cart-items">
+            <!-- Cart items will be dynamically loaded here -->
+          </div>
+          <div class="text-end mt-4 pt-3 border-top">
             <h5>Total: ₹<span id="cart-total">0</span></h5>
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-success" onclick="checkout()">Checkout</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+          <button class="btn btn-success" onclick="checkout()">Proceed to Checkout</button>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    <i class="fas fa-check-circle me-2"></i> <span id="notification-text">Product added to cart!</span>
   </div>
 
   <!-- Footer -->
@@ -161,32 +378,85 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const products = [
-      { id: 1, category: "milk", name: "Full Cream Milk", price: 60, discount: 5, image: "images/fullcream.jpg" },
-      { id: 2, category: "sweets", name: "Kaju Katli", price: 250, discount: 10, image: "images/kajukatli.jpg" },
-      { id: 3, category: "vegetables", name: "Tomatoes (1kg)", price: 40, discount: 5, image: "images/tomato.jpg" },
-      { id: 4, category: "pooja", name: "Incense Sticks", price: 50, discount: 8, image: "images/incense.jpg" },
+      { id: 1, category: "milk", name: "Full Cream Milk", price: 60, discount: 5, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
+      { id: 2, category: "milk", name: "Toned Milk", price: 50, discount: 0, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
+      { id: 3, category: "milk", name: "Curd", price: 40, discount: 10, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
+      { id: 4, category: "sweets", name: "Kaju Katli", price: 250, discount: 10, image: "https://images.unsplash.com/photo-1586985288625-7c6c12f3b8e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
+      { id: 5, category: "sweets", name: "Gulab Jamun", price: 180, discount: 5, image: "https://images.unsplash.com/photo-1586985288625-7c6c12f3b8e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
+      { id: 6, category: "sweets", name: "Rasgulla", price: 120, discount: 8, image: "https://images.unsplash.com/photo-1586985288625-7c6c12f3b8e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
+      { id: 7, category: "vegetables", name: "Tomatoes (1kg)", price: 40, discount: 5, image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
+      { id: 8, category: "vegetables", name: "Potatoes (1kg)", price: 30, discount: 0, image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
+      { id: 9, category: "vegetables", name: "Onions (1kg)", price: 35, discount: 3, image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
+      { id: 10, category: "pooja", name: "Incense Sticks", price: 50, discount: 8, image: "https://images.unsplash.com/photo-1601905809340-8756890be33c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
+      { id: 11, category: "pooja", name: "Camphor", price: 25, discount: 5, image: "https://images.unsplash.com/photo-1601905809340-8756890be33c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
+      { id: 12, category: "pooja", name: "Ghee Lamp", price: 120, discount: 12, image: "https://images.unsplash.com/photo-1601905809340-8756890be33c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" },
     ];
 
     let cart = [];
+    let currentCategory = 'all';
 
     function showCategory(category) {
-      const filtered = products.filter(p => p.category === category);
+      currentCategory = category;
+      
+      // Update active button
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      const filtered = category === 'all' 
+        ? products 
+        : products.filter(p => p.category === category);
+      displayProducts(filtered);
+      
+      // Scroll to products section
+      document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function filterProducts() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+      const filtered = products.filter(p => 
+        p.name.toLowerCase().includes(searchTerm) && 
+        (currentCategory === 'all' || p.category === currentCategory)
+      );
       displayProducts(filtered);
     }
 
     function displayProducts(productList) {
       const container = document.getElementById('products-container');
       container.innerHTML = '';
+      
+      if (productList.length === 0) {
+        container.innerHTML = `
+          <div class="col-12 text-center py-5">
+            <i class="fas fa-search fa-3x text-muted mb-3"></i>
+            <h4 class="text-muted">No products found</h4>
+            <p class="text-muted">Try adjusting your search or filter criteria</p>
+          </div>
+        `;
+        return;
+      }
+      
       productList.forEach(p => {
+        const discountedPrice = p.price - (p.price * p.discount / 100);
         container.innerHTML += `
-          <div class="col-md-3">
-            <div class="card product-card position-relative">
-              <div class="discount-badge">-${p.discount}%</div>
-              <img src="${p.image}" class="card-img-top" alt="${p.name}">
-              <div class="card-body text-center">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card product-card position-relative h-100">
+              ${p.discount > 0 ? `<div class="discount-badge">-${p.discount}%</div>` : ''}
+              <img src="${p.image}" class="card-img-top" alt="${p.name}" style="height: 200px; object-fit: cover;">
+              <div class="card-body d-flex flex-column">
                 <h6 class="card-title">${p.name}</h6>
-                <p class="text-muted mb-1"><s>₹${p.price}</s> <span class="fw-bold text-success">₹${p.price - (p.price * p.discount / 100)}</span></p>
-                <button class="btn btn-primary btn-sm" onclick="addToCart(${p.id})">Add to Cart</button>
+                <div class="mt-auto">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    ${p.discount > 0 
+                      ? `<div><span class="original-price">₹${p.price}</span> <span class="discount-price">₹${discountedPrice.toFixed(2)}</span></div>`
+                      : `<span class="price">₹${p.price}</span>`
+                    }
+                  </div>
+                  <button class="btn btn-primary btn-sm w-100" onclick="addToCart(${p.id})">
+                    <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                  </button>
+                </div>
               </div>
             </div>
           </div>`;
@@ -196,40 +466,89 @@
     function addToCart(id) {
       const item = products.find(p => p.id === id);
       cart.push(item);
-      document.getElementById('cart-count').innerText = cart.length;
+      updateCartCount();
       renderCart();
+      showNotification(`${item.name} added to cart!`);
+    }
+
+    function updateCartCount() {
+      document.getElementById('cart-count').innerText = cart.length;
     }
 
     function renderCart() {
       const cartContainer = document.getElementById('cart-items');
-      cartContainer.innerHTML = '';
       let total = 0;
-      cart.forEach((item, i) => {
-        const price = item.price - (item.price * item.discount / 100);
-        total += price;
-        cartContainer.innerHTML += `
-          <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-            <div>
-              <h6>${item.name}</h6>
-              <small>₹${price}</small>
-            </div>
-            <button class="btn btn-sm btn-danger" onclick="removeItem(${i})">Remove</button>
-          </div>`;
-      });
+      
+      if (cart.length === 0) {
+        cartContainer.innerHTML = `
+          <div class="empty-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <h5>Your cart is empty</h5>
+            <p>Add some products to your cart</p>
+          </div>
+        `;
+      } else {
+        cartContainer.innerHTML = '';
+        cart.forEach((item, i) => {
+          const price = item.price - (item.price * item.discount / 100);
+          total += price;
+          cartContainer.innerHTML += `
+            <div class="cart-item d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center">
+                <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                <div class="ms-3">
+                  <h6 class="mb-0">${item.name}</h6>
+                  <small class="text-muted">₹${price.toFixed(2)}</small>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-outline-danger" onclick="removeItem(${i})">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>`;
+        });
+      }
+      
       document.getElementById('cart-total').innerText = total.toFixed(2);
     }
 
     function removeItem(index) {
+      const removedItem = cart[index];
       cart.splice(index, 1);
-      document.getElementById('cart-count').innerText = cart.length;
+      updateCartCount();
       renderCart();
+      showNotification(`${removedItem.name} removed from cart!`);
     }
 
     function checkout() {
-      alert("Thank you for your purchase!");
+      if (cart.length === 0) {
+        alert("Your cart is empty. Add some products before checkout.");
+        return;
+      }
+      
+      const total = cart.reduce((sum, item) => {
+        return sum + (item.price - (item.price * item.discount / 100));
+      }, 0);
+      
+      alert(`Thank you for your purchase! Your total is ₹${total.toFixed(2)}. Your order will be delivered soon.`);
       cart = [];
-      document.getElementById('cart-count').innerText = 0;
+      updateCartCount();
       renderCart();
+      
+      // Close the modal
+      const cartModal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+      cartModal.hide();
+    }
+
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      const notificationText = document.getElementById('notification-text');
+      
+      notificationText.textContent = message;
+      notification.style.display = 'block';
+      
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
     }
 
     // Load all products on startup
