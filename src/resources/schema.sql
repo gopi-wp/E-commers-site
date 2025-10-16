@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS product (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  category VARCHAR(50),
+  name VARCHAR(255),
+  price DECIMAL(10,2),
+  discount INT,
+  image VARCHAR(1000)
+);
+
+CREATE TABLE IF NOT EXISTS users (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(100) UNIQUE,
+  password VARCHAR(255),
+  role VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS cart_item (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  product_id BIGINT,
+  username VARCHAR(100),
+  quantity INT DEFAULT 1
+);
